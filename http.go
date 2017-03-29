@@ -51,7 +51,7 @@ type Client struct {
 
 	AccountSid string
 	AuthToken  string
-
+	APIKey     string
 	// The API Client uses these resources
 	Accounts          *AccountService
 	Applications      *ApplicationService
@@ -111,11 +111,16 @@ func parseTwilioError(resp *http.Response) error {
 	}
 }
 
-func NewMonitorClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+func NewMonitorClient(accountSid, authToken, apiKey string, httpClient *http.Client) *Client {
+	if apiKey == "" {
+		apiKey = accountSid
+	}
+
 	if httpClient == nil {
 		httpClient = &http.Client{Timeout: defaultTimeout}
 	}
-	restClient := rest.NewClient(accountSid, authToken, MonitorBaseURL)
+
+	restClient := rest.NewClient(apiKey, authToken, MonitorBaseURL)
 	c := &Client{Client: restClient, AccountSid: accountSid, AuthToken: authToken}
 	c.FullPath = func(pathPart string) string {
 		return "/" + c.APIVersion + "/" + pathPart
@@ -126,11 +131,17 @@ func NewMonitorClient(accountSid string, authToken string, httpClient *http.Clie
 }
 
 // returns a new Client to use the pricing API
-func NewPricingClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+func NewPricingClient(accountSid, authToken, apiKey string, httpClient *http.Client) *Client {
+
+	if apiKey == "" {
+		apiKey = accountSid
+	}
+
 	if httpClient == nil {
 		httpClient = &http.Client{Timeout: defaultTimeout}
 	}
-	restClient := rest.NewClient(accountSid, authToken, PricingBaseURL)
+
+	restClient := rest.NewClient(apiKey, authToken, PricingBaseURL)
 	c := &Client{Client: restClient, AccountSid: accountSid, AuthToken: authToken}
 	c.APIVersion = PricingVersion
 	c.FullPath = func(pathPart string) string {
@@ -152,12 +163,17 @@ func NewPricingClient(accountSid string, authToken string, httpClient *http.Clie
 // NewClient creates a Client for interacting with the Twilio API. This is the
 // main entrypoint for API interactions; view the methods on the subresources
 // for more information.
-func NewClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+func NewClient(accountSid, authToken, apiKey string, httpClient *http.Client) *Client {
+
+	if apiKey == "" {
+		apiKey = accountSid
+	}
 
 	if httpClient == nil {
 		httpClient = &http.Client{Timeout: defaultTimeout}
 	}
-	restClient := rest.NewClient(accountSid, authToken, BaseURL)
+
+	restClient := rest.NewClient(apiKey, authToken, BaseURL)
 	restClient.Client = httpClient
 	restClient.UploadType = rest.FormURLEncoded
 	restClient.ErrorParser = parseTwilioError
@@ -168,8 +184,8 @@ func NewClient(accountSid string, authToken string, httpClient *http.Client) *Cl
 	c.FullPath = func(pathPart string) string {
 		return "/" + strings.Join([]string{c.APIVersion, "Accounts", c.AccountSid, pathPart + ".json"}, "/")
 	}
-	c.Monitor = NewMonitorClient(accountSid, authToken, httpClient)
-	c.Pricing = NewPricingClient(accountSid, authToken, httpClient)
+	c.Monitor = NewMonitorClient(accountSid, authToken, apiKey, httpClient)
+	c.Pricing = NewPricingClient(accountSid, authToken, apiKey, httpClient)
 
 	c.Accounts = &AccountService{client: c}
 	c.Applications = &ApplicationService{client: c}
