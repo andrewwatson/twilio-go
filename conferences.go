@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"time"
 
-	types "github.com/kevinburke/go-types"
+	types "github.com/andrewwatson/go-types"
 
 	"golang.org/x/net/context"
 )
