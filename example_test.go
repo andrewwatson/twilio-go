@@ -6,8 +6,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/kevinburke/rest"
-	twilio "github.com/saintpete/twilio-go"
+	"github.com/andrewwatson/rest"
+	twilio "github.com/andrewwatson/twilio-go"
 	"golang.org/x/net/context"
 )
 

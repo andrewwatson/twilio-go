@@ -8,6 +8,12 @@
   version = "0.23"
 
 [[projects]]
+  name = "github.com/andrewwatson/rest"
+  packages = ["."]
+  revision = "d3f028c5a0d45baa0b99386218c83d039397b9b7"
+  version = "0.15"
+
+[[projects]]
   name = "github.com/dgrijalva/jwt-go"
   packages = ["."]
   revision = "dbeaa9332f19a944acb5736b4456cfcc02140e29"
@@ -32,12 +38,6 @@
   version = "v2.13"
 
 [[projects]]
-  name = "github.com/kevinburke/go-types"
-  packages = ["."]
-  revision = "d767d076b02bff3b9458aae3ae7170740c252823"
-  version = "0.21"
-
-[[projects]]
   name = "github.com/kevinburke/rest"
   packages = ["."]
   revision = "b2c053a6ab954961c506c953ba0e735aac5725c2"
@@ -54,12 +54,6 @@
   packages = ["."]
   revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
   version = "v0.0.3"
-
-[[projects]]
-  name = "github.com/saintpete/twilio-go"
-  packages = [".","token","twilioclient"]
-  revision = "32554d294f151c6f43ac35b9051c31ef98feee05"
-  version = "0.54"
 
 [[projects]]
   name = "github.com/satori/go.uuid"
@@ -100,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "bff1cc06c0f5ce5e9cb1f36e43d65390e82a4e2c39c7eff6c998bcd749a5ea3e"
+  inputs-digest = "7cc7b4692b5d368a8c31292cc8e2e06209dedaa527f00817532da0bf5ce20338"
   solver-name = "gps-cdcl"
   solver-version = 1

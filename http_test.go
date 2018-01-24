@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kevinburke/rest"
+	"github.com/andrewwatson/rest"
 	"golang.org/x/net/context"
 )
 
