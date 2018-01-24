@@ -5,7 +5,7 @@
   name = "github.com/andrewwatson/go-types"
   packages = ["."]
   revision = "37188941eeddd548234b8764e03ccde77edf3855"
-  version = "0.23"
+  version = "0.24"
 
 [[projects]]
   name = "github.com/andrewwatson/rest"
@@ -94,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7cc7b4692b5d368a8c31292cc8e2e06209dedaa527f00817532da0bf5ce20338"
+  inputs-digest = "c477d83da7cb2549f6d00dde3038761d87757eec47c6500a2a08c926c5390d1c"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -23,7 +23,7 @@
 
 [[constraint]]
   name = "github.com/andrewwatson/go-types"
-  version = "0.23.0"
+  version = "0.24.0"
 
 [[constraint]]
   name = "github.com/dgrijalva/jwt-go"
